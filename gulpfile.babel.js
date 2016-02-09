@@ -33,6 +33,8 @@ import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
+import subtree from 'gulp-subtree';
+import ghPages from 'gulp-gh-pages';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -209,6 +211,17 @@ gulp.task('default', ['clean'], cb =>
     cb
   )
 );
+
+//deploy
+// gulp.task('deploy', ['default'], () => {
+//   return gulp.src('dist')
+//     .pipe($.subtree());
+// });
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
 
 // Run PageSpeed Insights
 gulp.task('pagespeed', cb =>
