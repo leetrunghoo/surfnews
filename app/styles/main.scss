@@ -13,41 +13,87 @@ body {
     min-height: calc(100vh - 56px);
     box-sizing: border-box;
 }
-
-.mdl-card {
-    width: initial;
-    .mdl-card__title {
+.news-item { 
+    .news-item__title {
         color: #fff;
-        background: url('') center center no-repeat #46B6AC;
-        background-size: cover;
-        display: block;
-        .mdl-card__title-text {
-            margin-bottom: 10px;
+        background-color: #46B6AC;
+        padding: 10px;
+        .news-item__title-text {
+            margin-bottom: 5px;
         }
-        .mdl-card__title-time {
+        .news-item__title-time {
             font-size: 12px;
         }
     }
-    .mdl-card__supporting-text.content {
-        padding: 0;
+    .news-item__content {
+        padding: 5px;
         width: 100%;
-        > * {
-            padding: 0 10px;
-        }
-        a,
+        box-sizing: border-box;
         img {
-            width: 100%;
+            width: calc(100% + 10px);
             height: auto;
             padding: 0;
+            margin-bottom: 5px;
+            margin-left: -5px;
+            margin-top: -5px;
         }
     }
-    .mdl-card__actions {
+    .news-item__actions {
+        overflow: initial;
         > *:last-child {
             float: right;
         }
     }
 }
 
+.mdl-layout__content {
+    padding: 1em;
+}
+
+/** masonry layout **/
+
+    .masonry {
+        width: 100%;
+        -moz-column-gap: 1em;
+        -webkit-column-gap: 1em;
+        column-gap: 1em;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+        > div {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    }
+    @media only screen and (min-width: 413px) {
+        .masonry {
+            -moz-column-count: 2;
+            -webkit-column-count: 2;
+            column-count: 2;
+        }
+    }
+    @media only screen and (min-width: 768px) {
+        .masonry {
+            -moz-column-count: 3;
+            -webkit-column-count: 3;
+            column-count: 3;
+        }
+    }
+    @media only screen and (min-width: 992px) {
+        .masonry {
+            -moz-column-count: 4;
+            -webkit-column-count: 4;
+            column-count: 4;
+        }
+    }
+    @media only screen and (min-width: 1080px) {
+        .masonry {
+            -moz-column-count: 5;
+            -webkit-column-count: 5;
+            column-count: 5;
+        }
+    }
 
 /** popup **/
 

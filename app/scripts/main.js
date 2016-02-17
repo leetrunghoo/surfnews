@@ -164,7 +164,7 @@
                     news = response.query.results.item;
                 }
             } else if (type === "json") {
-                news = response.results.results;
+                news = response.results.results || response.results.items || response.results.collection1;
             }
             news.forEach(item => {
                 displayDiv.innerHTML += getTemplateNews(item);
@@ -186,9 +186,12 @@
                 };
                 getNewsDetail(type, link, function(detail) {
                     var content_html = detail.content_html || detail.content;
+                    var $content = $('<div>'+content_html+'</div');
+                    $content.find('.nocontent').remove();
+                    // var $content = $(content_html).siblings(".nocontent").remove();
                     showDialog({
                         title: detail.title,
-                        text: content_html
+                        text: $content.html()
                     })
                 })
             });
@@ -210,26 +213,25 @@
 
         news.time = news.time || news.publishedDate || news.pubDate || '';
         news.link = news.link || news.url;
-        return `<div class='news-item mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone'>
-                    <div class='mdl-card mdl-shadow--2dp'>
-                        <div class='mdl-card__title mdl-card--expand'>
-                            <div class='mdl-card__title-text'>
-                               ${news.title}
-                            </div>
-                            <div class='mdl-card__title-time'>${news.time}</div>
+        news.sourceText = news.source ? ' - ' + news.source.text : '';
+        return `<div class='news-item mdl-color-text--grey-700 mdl-shadow--2dp'>
+                    <div class='news-item__title'>
+                        <div class='news-item__title-text mdl-typography--title'>
+                           ${news.title}
                         </div>
-                        <div class='mdl-card__supporting-text content'>
-                            ${news.image}
-                            ${news.summary}
-                        </div>
-                        <div class='mdl-card__actions mdl-card--border'>
-                            <button data-link='${news.link}' class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect simple-ajax-popup'>
-                              View more
-                            </button>
-                            <a href='${news.link}' target='_blank' class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect simple-ajax-popup'>
-                              Open web
-                            </a>
-                        </div>
+                        <div class='news-item__title-time'>${news.time} <b>${news.sourceText}</b></div>
+                    </div>
+                    <div class='news-item__content'>
+                        ${news.image}
+                        ${news.summary}
+                    </div>
+                    <div class='news-item__actions'>
+                        <button data-link='${news.link}' class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect simple-ajax-popup'>
+                          View more
+                        </button>
+                        <a href='${news.link}' target='_blank' class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect simple-ajax-popup'>
+                          Open web
+                        </a>
                     </div>
                 </div>`
     }

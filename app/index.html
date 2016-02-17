@@ -13,15 +13,15 @@
     <link rel="manifest" href="manifest.json">
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Web Starter Kit">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <meta name="application-name" content="SurfNews">
+    <link rel="icon" sizes="192x192" href="images/touch/news-icon.png">
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="SurfNews">
+    <link rel="apple-touch-icon" href="images/touch/news-icon.png">
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileImage" content="images/touch/news-icon.png">
     <meta name="msapplication-TileColor" content="#2F3BA2">
     <!-- Color the status bar on mobile devices -->
     <meta name="theme-color" content="#2F3BA2">
@@ -29,7 +29,7 @@
     <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.teal-red.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.teal-red.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Your styles -->
     <!-- <link rel="stylesheet" href="styles/lib/magnific-popup.css"> -->
@@ -60,6 +60,7 @@
         <div class="mdl-layout__drawer">
             <!-- <span class="mdl-layout-title">Select newspaper</span> -->
             <nav class="mdl-navigation">
+                <a href="#" class="mdl-navigation__link change-news" data-type="json" data-url="https://www.kimonolabs.com/api/dxpy3fck?apikey=7Tue8Vpi6xfZk5jlTurkq3ZbxgWCQncn">baomoi</a>
                 <a href="#" class="mdl-navigation__link change-news" data-type="json" data-url="https://www.kimonolabs.com/api/5zi2fdma?apikey=7Tue8Vpi6xfZk5jlTurkq3ZbxgWCQncn">tuoitre vanhoa</a>
                 <a href="#" class="mdl-navigation__link change-news" data-type="rss" data-url="http://tuoitre.vn/rss/tt-tin-moi-nhat.rss">tuoitre</a>
                 <a href="#" class="mdl-navigation__link change-news" data-type="rss" data-url="http://vnexpress.net/rss/tin-moi-nhat.rss">vnexpress</a>
@@ -68,7 +69,7 @@
             </nav>
         </div>
         <main class="mdl-layout__content">
-            <div id="mainContent" class="mdl-grid">
+            <div id="mainContent" class="masonry">
                 <!-- <div class="mdl-cell mdl-cell--12-col mdl-cell--middle mdl-typography--text-center">
                     <div class="mdl-spinner mdl-js-spinner is-active"></div>
                 </div> -->
@@ -81,7 +82,7 @@
     // System.import("lib/main.js");
     // System.import("lib/jquery-2.2.0.min.js");
     </script>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- build:js(app/) scripts/main.min.js -->
      <!--<<script src="scripts/lib/jquery-2.2.0.min.js"></script>-->
