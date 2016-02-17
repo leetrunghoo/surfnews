@@ -67,6 +67,7 @@
     // var rss_tuoitre = 'http://tuoitre.vn/rss/tt-tin-moi-nhat.rss';
     // var rss_vnexpress = 'http://vnexpress.net/rss/tin-moi-nhat.rss';
     var rssReader = 'yql';
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
     function urlBuilder(type, url) {
         if (type === "rss") {
@@ -186,7 +187,10 @@
                 };
                 getNewsDetail(type, link, function(detail) {
                     var content_html = detail.content_html || detail.content;
-                    var $content = $('<div>'+content_html+'</div');
+                    if (!isChrome) {
+                        content_html = content_html.replace(new RegExp('.webp', 'g'), '');
+                    }
+                    var $content = $('<div>' + content_html + '</div');
                     $content.find('.nocontent').remove();
                     // var $content = $(content_html).siblings(".nocontent").remove();
                     showDialog({
@@ -210,6 +214,9 @@
             news.image = $(news.content).find('img:first-child').attr('src');
         }
         news.image = (news.image) ? `<img src="${news.image.replace(new RegExp('/s146/', 'g'), '/s440/')}" />` : '';
+        if (!isChrome) {
+            news.image = news.image.replace(new RegExp('.webp', 'g'), '');
+        }
 
         news.time = news.time || news.publishedDate || news.pubDate || '';
         news.link = news.link || news.url;
